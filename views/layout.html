@@ -12,16 +12,20 @@
     <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
     <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
   </head>
-  <body>
+  <body style="background-color: gray">
     <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
     
-    <div id="main">
+    <div id="main" style="height:800px">
+        <span v-text='title' class=""></span>    
+        <button id="chart_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_chart"><i class="" aria-hidden="true"></i>Run charts!</button>            
       {{ include }}
     </div>
     
     <script>
       const GETDATA = '{{=URL("default", "get_data")}}'
     </script>
+    <!-- echarts -->
+    <script src="{{=URL('static', 'js/echarts/echarts.min.js')}}"></script>
     <!-- babel -->
     <script src="{{=URL('static','js/vendor/babel.min.js')}}"></script>
     <!-- vue -->
@@ -33,7 +37,7 @@
     <!-- axios -->
     <script src="{{=URL('static','js/vendor/axios.min.js')}}"></script>
     <!-- app.js -->
-    <script src="{{=URL('static','js/app/app.js')}}"></script>
-
+    <script src="{{=URL('static','js/app/app.js')}}"></script>    
+    
   </body>
 </html>
