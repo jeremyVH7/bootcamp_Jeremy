@@ -22,7 +22,7 @@ axios.get(GETDATA)
 			    build_scatter:function(d){		        
 			        var scatterChart = echarts.init(document.getElementById('scatter'));
 					var scatter_data = scatter_output;					
-
+					
 			        option = {
 			        	title: {
 		                    text: 'Bethesda North American/European Sales'
