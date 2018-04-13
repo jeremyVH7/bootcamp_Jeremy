@@ -15,12 +15,10 @@
   <body style="background-color: gray">
     <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
     
-    <div id="main" style="height:800px">
-        <span v-text='title' class=""></span>    
-        <button id="chart_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_chart"><i class="" aria-hidden="true"></i>Run charts!</button>            
-      {{ include }}
+    <div id="main">
+        {{ include }}        
     </div>
-    
+
     <script>
       const GETDATA = '{{=URL("default", "get_data")}}'
     </script>
