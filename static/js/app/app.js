@@ -5,9 +5,7 @@ const app = new Vue({
 
 // use axios for xhr
 axios.get(GETDATA)	    
-	.then(output => {
-		// debugger;
-		
+	.then(output => {		
         var scatter_output = output['data']['scatter_data'];
         var line_output = output['data']['line_data'];
         var pie_output = output['data']['pie_data'];
@@ -19,8 +17,8 @@ axios.get(GETDATA)
 			  title: ""
 			},
 			methods:{	    
-			    build_scatter:function(d){		        
-			        var scatterChart = echarts.init(document.getElementById('scatter'));
+			    build_scatter:function(d){		   			    	
+			        var scatterChart = echarts.init(document.getElementById('chart_div'));
 					var scatter_data = scatter_output;					
 					
 			        option = {
@@ -39,10 +37,10 @@ axios.get(GETDATA)
 		                    showDelay : 0,
 		                    formatter : function (params) {
 		                        if (params.value.length > 1) {
-		                            return params.value[2] + ':<br/>NA Sales: ' + params.value[0] + '<br/>EU Sales: ' + params.value[1];
+		                            return params.value[2] + ':<br/>NA Sales (in millions): ' + params.value[0] + '<br/>EU Sales (in millions): ' + params.value[1];
 		                        }
 		                        else {
-		                            return params.value[2] + ':<br/>NA Sales: ' + params.value[0] + '<br/>EU Sales: ' + params.value[1];
+		                            return params.value[2] + ':<br/>NA Sales (in millions): ' + params.value[0] + '<br/>EU Sales (in millions): ' + params.value[1];
 		                        }
 		                    },
 		                    axisPointer:{
@@ -60,10 +58,10 @@ axios.get(GETDATA)
 					        type: 'scatter'
 					    }]
 					};
-					scatterChart.setOption(option);
+					scatterChart.setOption(option, true);
 			    },
-			    build_line:function(d){		        
-			        var lineChart = echarts.init(document.getElementById('line'));
+			    build_line:function(d){		 			    	   
+			        var lineChart = echarts.init(document.getElementById('chart_div'));
 					
 					var line_data = line_output;
 			        var labels = line_data['labels'];
@@ -105,10 +103,10 @@ axios.get(GETDATA)
 		                    type: 'line'
 		                }]
 		            };
-					lineChart.setOption(option);
+					lineChart.setOption(option, true);
 			    },
-			    build_pie:function(d){		        
-			        var pieChart = echarts.init(document.getElementById('pie'));					
+			    build_pie:function(d){		 			    	
+			        var pieChart = echarts.init(document.getElementById('chart_div'));					
 					var pie_data = pie_output;			        
 		            
 		            var option = {
@@ -126,7 +124,7 @@ axios.get(GETDATA)
 		                    data: pie_data                    
 		                }]
 		            };
-					pieChart.setOption(option);
+					pieChart.setOption(option, true);
 			    }
 			}
 

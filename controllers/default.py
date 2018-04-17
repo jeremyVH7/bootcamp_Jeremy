@@ -27,7 +27,7 @@ def get_data():
     output['line_data']['labels'] = line_data_labels
     output['line_data']['values'] = line_data_values
     output['pie_data'] = pie_data
-    # import ipdb;ipdb.set_trace()    
+           
     return json(output)
 
 
