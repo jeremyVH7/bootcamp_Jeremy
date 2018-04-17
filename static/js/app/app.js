@@ -23,24 +23,24 @@ axios.get(GETDATA)
 					
 			        option = {
 			        	title: {
-		                    text: 'Bethesda North American/European Sales'
+		                    text: 'Bethesda North American/European Units Sold (in millions)'
 		                },
 					    xAxis: {
-					    	name: 'NA Sales(in millions)',
+					    	name: 'NA Units Sold(in millions)',
 					    	nameLocation: 'end'
 					    },
 					    yAxis: {
-					    	name: 'EU Sales(in millions)',
+					    	name: 'EU Units Sold(in millions)',
 					    	nameLocation: 'end'
 					    },
 					    tooltip : {                    
 		                    showDelay : 0,
 		                    formatter : function (params) {
 		                        if (params.value.length > 1) {
-		                            return params.value[2] + ':<br/>NA Sales (in millions): ' + params.value[0] + '<br/>EU Sales (in millions): ' + params.value[1];
+		                            return params.value[2] + ':<br/>NA Units Sold (in millions): ' + params.value[0] + '<br/>EU Units Sold (in millions): ' + params.value[1];
 		                        }
 		                        else {
-		                            return params.value[2] + ':<br/>NA Sales (in millions): ' + params.value[0] + '<br/>EU Sales (in millions): ' + params.value[1];
+		                            return params.value[2] + ':<br/>NA Units Sold (in millions): ' + params.value[0] + '<br/>EU Units Sold (in millions): ' + params.value[1];
 		                        }
 		                    },
 		                    axisPointer:{
@@ -69,7 +69,7 @@ axios.get(GETDATA)
 
 		            option = {
 		                title: {
-		                    text: 'Bethesda North American Sales'
+		                    text: 'Bethesda North American Units Sold (in millions)'
 		                },
 		                tooltip: {
 		                    axisPointer:{
@@ -89,7 +89,7 @@ axios.get(GETDATA)
 		                },
 		                yAxis: {
 		                    type: 'value',
-		                    name: 'NA Sales(in millions)',
+		                    name: 'NA Units Sold(in millions)',
 					    	nameLocation: 'end'
 		                },
 		                series: [{
@@ -111,14 +111,14 @@ axios.get(GETDATA)
 		            
 		            var option = {
 		                title: {
-		                    text: 'Bethesda North American Sales'
+		                    text: 'Bethesda North American Units Sold (in millions)'
 		                },
 		                tooltip: {},
 		                legend: {
 		                    data: 'Legend'
 		                },                                              
 		                series: [{                    
-		                    name: 'NA Sales(in millions)',
+		                    name: 'NA Units Sold(in millions)',
 		                    type: 'pie',     
 		                    selectedMode: 'single',               
 		                    data: pie_data                    
