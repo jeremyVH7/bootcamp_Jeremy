@@ -3,6 +3,8 @@ const app = new Vue({
 	
 })
 
+
+
 // use axios for xhr
 axios.get(GETDATA)	    
 	.then(output => {		
@@ -55,7 +57,8 @@ axios.get(GETDATA)
 					    series: [{
 					        symbolSize: 20,
 					        data: scatter_data,
-					        type: 'scatter'
+					        type: 'scatter',
+					        color: '#0055FF'
 					    }]
 					};
 					scatterChart.setOption(option, true);
@@ -100,6 +103,7 @@ axios.get(GETDATA)
 		                    symbolSize: 10,
 		                    showAllSymbol: true,
 		                    data: values,
+		                    color: '#0055FF',
 		                    type: 'line'
 		                }]
 		            };

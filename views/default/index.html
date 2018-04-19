@@ -1,6 +1,7 @@
 {{extend 'layout.html'}}
 <span v-text='title' class=""></span>
-<button id="pie_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_pie"><i class="" aria-hidden="true"></i>Pie chart!</button>  
-<button id="line_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_line"><i class="" aria-hidden="true"></i>Line chart!</button>
-<button id="scatter_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_scatter"><i class="" aria-hidden="true"></i>Scatter chart!</button>
+<!-- <pie_btn></pie_btn> -->
+<button id="pie_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_pie">Pie chart!</button>
+<button id="line_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_line">Line chart!</button>
+<button id="scatter_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_scatter">Scatter chart!</button>
 <div id="chart_div" style="height:900px"></div>
