@@ -1,7 +1,3 @@
-const app = new Vue({
-	// create your Vue Object
-	
-})
 
 
 
