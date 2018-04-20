@@ -9,7 +9,7 @@ def get_data():
     import os
 
     wd = os.getcwd()
-    privateDir = wd + '/applications/bootcamp_template/private/'
+    privateDir = wd + '/applications/bootcamp_Jeremy/private/'
 
     df = pandas.read_csv(privateDir + '\\data\\dataset_1\\Video_Games_Sales_as_at_22_Dec_2016.csv')
     
