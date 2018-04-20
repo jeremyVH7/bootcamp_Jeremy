@@ -1,7 +1,0 @@
-errors/
-sessions/
-databases/
-*.pyc
-*.swp
-kernel*
-.vscode/
