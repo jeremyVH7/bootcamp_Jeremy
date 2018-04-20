@@ -6,9 +6,13 @@ def get_data():
     import pandas
     import numpy as np
     from gluon.serializers import json
+    import os
 
-    df = pandas.read_csv('C:\\Work\\web2py\\applications\\bootcamp_template\\private\\data\\dataset_1\\Video_Games_Sales_as_at_22_Dec_2016.csv')
+    wd = os.getcwd()
+    privateDir = wd + '/applications/bootcamp_template/private/'
 
+    df = pandas.read_csv(privateDir + '\\data\\dataset_1\\Video_Games_Sales_as_at_22_Dec_2016.csv')
+    
     output = {}
     output['line_data'] = {}
     scatter_data = []
