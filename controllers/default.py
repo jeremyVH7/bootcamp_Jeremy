@@ -7,11 +7,10 @@ def get_data():
     import numpy as np
     from gluon.serializers import json
     import os
+    
+    path = os.path.join(request.folder)
 
-    wd = os.getcwd()
-    privateDir = wd + '/applications/bootcamp_Jeremy/private/'
-
-    df = pandas.read_csv(privateDir + '\\data\\dataset_1\\Video_Games_Sales_as_at_22_Dec_2016.csv')
+    df = pandas.read_csv(path + 'private\\data\\dataset_1\\Video_Games_Sales_as_at_22_Dec_2016.csv')
     
     output = {}
     output['line_data'] = {}
