@@ -31,7 +31,7 @@ def get_data():
             line_data_values.append(row[5])        
             pie_data.append({'name': str(row[0]), 'value': row[5]})
             
-        output[p] = {'scatter_data': scatter_data}, {'pie_data': pie_data}, {'line_data': {'labels': line_data_labels}}, {'line_data': {'values': line_data_values}}
+        output[p] = {'scatter_data': scatter_data}, {'pie_data': pie_data}, {'line_data': {'labels': line_data_labels, 'values': line_data_values}}
            
     # import ipdb; ipdb.set_trace()
     return json(output)
