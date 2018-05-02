@@ -72,7 +72,7 @@ var chart_vue = new Vue({
           var lineSelected = linePub.options[linePub.selectedIndex].text;
 
           var labels = this.data[lineSelected][2]['line_data']['labels'];
-          var values = this.data[lineSelected][3]['line_data']['values'];
+          var values = this.data[lineSelected][2]['line_data']['values'];
                     
           option = {
             title: {
