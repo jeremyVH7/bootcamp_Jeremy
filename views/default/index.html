@@ -1,7 +1,8 @@
 {{extend 'layout.html'}}
 <span v-text='title' class=""></span>
-<!-- <pie_btn></pie_btn> -->
-<button id="pie_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_pie">Pie chart!</button>
-<button id="line_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_line">Line chart!</button>
-<button id="scatter_btn" type="button" class="btn btn-primary" v-on:click.prevent="build_scatter">Scatter chart!</button>
+<my-navbar
+    @build_pie="buildPie"
+    @build_line="buildLine"
+    @build_scatter="buildScatter">
+</my-navbar>
 <div id="chart_div" style="height:900px"></div>

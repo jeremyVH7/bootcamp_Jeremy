@@ -11,26 +11,29 @@ def get_data():
     path = os.path.join(request.folder)
 
     df = pandas.read_csv(path + 'private\\data\\dataset_1\\Video_Games_Sales_as_at_22_Dec_2016.csv')
-    
-    output = {}
-    output['line_data'] = {}
-    scatter_data = []
-    pie_data = []
-    line_data_labels = []
-    line_data_values = []
         
-    for i, row in df.iterrows():            
-        if row[4] == 'Bethesda Softworks':
+    publishersTop = df['Publisher'].value_counts().nlargest(10).axes[0].tolist()
+    publishersTop.append('Bethesda Softworks')
+
+    output = dict.fromkeys(publishersTop, 0)
+    output['publishers'] = publishersTop
+
+    for p in publishersTop:        
+        tempdf = df[df['Publisher'] == p]
+        scatter_data = []
+        pie_data = []
+        line_data_labels = []
+        line_data_values = []
+
+        for i, row in tempdf.iterrows():                                
             scatter_data.append([row[5], row[6], str(row[0])])        
             line_data_labels.append(str(row[0]))
             line_data_values.append(row[5])        
             pie_data.append({'name': str(row[0]), 'value': row[5]})
-
-    output['scatter_data'] = scatter_data
-    output['line_data']['labels'] = line_data_labels
-    output['line_data']['values'] = line_data_values
-    output['pie_data'] = pie_data
+            
+        output[p] = {'scatter_data': scatter_data}, {'pie_data': pie_data}, {'line_data': {'labels': line_data_labels}}, {'line_data': {'values': line_data_values}}
            
+    # import ipdb; ipdb.set_trace()
     return json(output)
 
 
