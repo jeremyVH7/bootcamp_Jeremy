@@ -10,7 +10,7 @@ let myNavbar = Vue.component('my-navbar', {
     <button id="pie_btn" type="button" class="btn btn-primary" v-on:click.prevent="$emit('build_pie')">Pie chart!</button>
     <button id="line_btn" type="button" class="btn btn-primary" v-on:click.prevent="$emit('build_line')">Line chart!</button>
     <button id="scatter_btn" type="button" class="btn btn-primary" v-on:click.prevent="$emit('build_scatter')">Scatter chart!</button>
-    <select id="publishers" name="publishers"></select>
+    <select id="publishers" name="publishers" style="min-width:12%;"><option value="Bethesda Softworks">Bethesda Softworks</option></select>
   </div>  
   `
 })
