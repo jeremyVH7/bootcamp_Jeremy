@@ -3,7 +3,9 @@ var chart_vue = new Vue({
       el: '#main',
       data: {
         title: "",
-        data: {}
+        data: {
+          currentChart: ''
+        }
       },
       methods: {
         publisherDropdown: function (d) {
@@ -18,6 +20,17 @@ var chart_vue = new Vue({
           document.getElementById('publishers').innerHTML = dropdown;
 
         },
+        onChange: function (d) {
+          if (this.data['currentChart'] == 'scatter' || this.data['currentChart'] == '') {
+            this.buildScatter();
+          }
+          else if (this.data['currentChart'] == 'pie') {
+            this.buildPie();
+          }
+          else if (this.data['currentChart'] == 'line') {
+            this.buildLine();
+          }
+        },
         buildScatter: function (d) {
           var scatterChart = echarts.init(document.getElementById('chart_div'));
 
@@ -26,6 +39,8 @@ var chart_vue = new Vue({
 
           var scatter_data = this.data[scatterSelected][0]['scatter_data'];
           
+          this.data['currentChart'] = 'scatter';
+
           option = {
             title: {
               text: scatterSelected + ' North American/European Units Sold (in millions)'
@@ -73,7 +88,8 @@ var chart_vue = new Vue({
 
           var labels = this.data[lineSelected][2]['line_data']['labels'];
           var values = this.data[lineSelected][2]['line_data']['values'];
-                    
+          this.data['currentChart'] = 'line';          
+
           option = {
             title: {
               text: lineSelected + ' North American Units Sold (in millions)'
@@ -120,7 +136,8 @@ var chart_vue = new Vue({
           var pieSelected = piePub.options[piePub.selectedIndex].text;
 
           var pie_data = this.data[pieSelected][1]['pie_data'];
-          
+          this.data['currentChart'] = 'pie';
+
           var option = {
             title: {
               text: pieSelected + ' North American Units Sold (in millions)'
