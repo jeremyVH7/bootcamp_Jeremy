@@ -14,8 +14,8 @@ def get_data():
         
     publishersTop = df['Publisher'].value_counts().nlargest(10).axes[0].tolist()
     publishersTop.append('Bethesda Softworks')
-
-    output = dict.fromkeys(publishersTop, 0)
+    
+    output = {}    
     output['publishers'] = publishersTop
 
     for p in publishersTop:        
