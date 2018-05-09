@@ -1,9 +1,10 @@
 {{extend 'layout.html'}}
 <span v-text='title' class=""></span>
 <my-navbar
-    @build_pie="buildPie"
-    @build_line="buildLine"
-    @build_scatter="buildScatter"
-    @on_change="onChange">
+    @build-pie="buildPie"
+    @build-line="buildLine"
+    @build-scatter="buildScatter"
+    @on-change="onChange">
 </my-navbar>
+<scatter-chart ref='scatter'></scatter-chart>
 <div id="chart_div" style="height:900px"></div>

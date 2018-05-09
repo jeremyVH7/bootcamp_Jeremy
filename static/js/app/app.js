@@ -7,6 +7,9 @@ var chart_vue = new Vue({
           currentChart: ''
         }
       },
+      components: {
+        'scatter-chart': scatterChart
+      },
       methods: {
         publisherDropdown: function (d) {
           var dropdown = [];
@@ -32,6 +35,20 @@ var chart_vue = new Vue({
           }
         },
         buildScatter: function (d) {
+          this.data['currentChart'] = 'scatter';          
+          var scatterPub = document.getElementById("publishers");
+          var scatterSelected = scatterPub.options[scatterPub.selectedIndex].text;
+          var scatter_data = this.data[scatterSelected][0]['scatter_data'];
+
+          var titleText = scatterSelected + ' North American/European Units Sold (in millions)';
+          var xName = 'NA Units Sold(in millions)';
+          var yName = 'EU Units Sold(in millions)';
+
+          var chartData = [scatterSelected, scatter_data, titleText, xName, yName];
+
+          this.$refs.scatter.buildScatter(chartData);
+        },
+        buildScatterOld: function (d) {
           var scatterChart = echarts.init(document.getElementById('chart_div'));
 
           var scatterPub = document.getElementById("publishers");
