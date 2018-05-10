@@ -8,7 +8,9 @@ var chart_vue = new Vue({
         }
       },
       components: {
-        'scatter-chart': scatterChart
+        'scatter-chart': scatterChart,
+        'line-chart': lineChart,
+        'pie-chart': pieChart
       },
       methods: {
         publisherDropdown: function (d) {
@@ -21,20 +23,19 @@ var chart_vue = new Vue({
           }
 
           document.getElementById('publishers').innerHTML = dropdown;
-
         },
         onChange: function (d) {
           if (this.data['currentChart'] == 'scatter' || this.data['currentChart'] == '') {
-            this.buildScatter();
+            this.runScatter();
           }
           else if (this.data['currentChart'] == 'pie') {
-            this.buildPie();
+            this.runPie();
           }
           else if (this.data['currentChart'] == 'line') {
-            this.buildLine();
+            this.runLine();
           }
         },
-        buildScatter: function (d) {
+        runScatter: function (d) {
           this.data['currentChart'] = 'scatter';          
           var scatterPub = document.getElementById("publishers");
           var scatterSelected = scatterPub.options[scatterPub.selectedIndex].text;
@@ -44,151 +45,50 @@ var chart_vue = new Vue({
           var xName = 'NA Units Sold(in millions)';
           var yName = 'EU Units Sold(in millions)';
 
-          var chartData = [scatterSelected, scatter_data, titleText, xName, yName];
-
-          this.$refs.scatter.buildScatter(chartData);
-        },
-        buildScatterOld: function (d) {
-          var scatterChart = echarts.init(document.getElementById('chart_div'));
-
-          var scatterPub = document.getElementById("publishers");
-          var scatterSelected = scatterPub.options[scatterPub.selectedIndex].text;
-
-          var scatter_data = this.data[scatterSelected][0]['scatter_data'];
-          
-          this.data['currentChart'] = 'scatter';
-
-          option = {
-            title: {
-              text: scatterSelected + ' North American/European Units Sold (in millions)'
-            },
-            xAxis: {
-              name: 'NA Units Sold(in millions)',
-              nameLocation: 'end'
-            },
-            yAxis: {
-              name: 'EU Units Sold(in millions)',
-              nameLocation: 'end'
-            },
-            tooltip: {
-              showDelay: 0,
-              formatter: function (params) {
-                if (params.value.length > 1) {
-                  return params.value[2] + ':<br/>NA Units Sold (in millions): ' + params.value[0] + '<br/>EU Units Sold (in millions): ' + params.value[1];
-                } else {
-                  return params.value[2] + ':<br/>NA Units Sold (in millions): ' + params.value[0] + '<br/>EU Units Sold (in millions): ' + params.value[1];
-                }
-              },
-              axisPointer: {
-                show: true,
-                type: 'cross',
-                lineStyle: {
-                  type: 'dashed',
-                  width: 1
-                }
-              }
-            },
-            series: [{
-              symbolSize: 15,
-              data: scatter_data,
-              type: 'scatter',
-              color: '#0055FF'
-            }]
+          var scatterData = {                         
+            'titleText': titleText, 
+            'scatter_data': scatter_data,
+            'xName': xName, 
+            'yName': yName
           };
-          scatterChart.setOption(option, true);
-        },
-        buildLine: function (d) {
-          var lineChart = echarts.init(document.getElementById('chart_div'));
 
+          this.$refs.scatter.buildScatter(scatterData);
+        },        
+        runLine: function (d) {
+          this.data['currentChart'] = 'line';  
           var linePub = document.getElementById("publishers");
           var lineSelected = linePub.options[linePub.selectedIndex].text;
-
           var labels = this.data[lineSelected][2]['line_data']['labels'];
           var values = this.data[lineSelected][2]['line_data']['values'];
-          this.data['currentChart'] = 'line';          
+                  
+          var titleText = lineSelected + ' North American Units Sold (in millions)';          
+          var yName = 'NA Units Sold(in millions)';
 
-          option = {
-            title: {
-              text: lineSelected + ' North American Units Sold (in millions)'
-            },
-            tooltip: {
-              axisPointer: {
-                show: true,
-                type: 'cross',
-                lineStyle: {
-                  type: 'dashed',
-                  width: 1
-                }
-              }
-            },
-            xAxis: {
-              type: 'category',
-              boundaryGap: true,
-              data: labels,
-              show: false
-            },
-            yAxis: {
-              type: 'value',
-              name: 'NA Units Sold(in millions)',
-              nameLocation: 'end'
-            },
-            series: [{
-              // options for smoothing line and area fill below
-              smooth: true,
-              areaStyle: {},
-              ///////
-              symbolSize: 10,
-              showAllSymbol: true,
-              data: values,
-              color: '#0055FF',
-              type: 'line'
-            }]
+          var lineData = {                        
+            'titleText': titleText, 
+            'labels': labels,
+            'values': values, 
+            'yName': yName
           };
-          lineChart.setOption(option, true);
+
+          this.$refs.line.buildLine(lineData);
         },
-        buildPie: function (d) {
-          var pieChart = echarts.init(document.getElementById('chart_div'));
-          
+        runPie: function (d) {
+          this.data['currentChart'] = 'pie';                    
           var piePub = document.getElementById("publishers");
           var pieSelected = piePub.options[piePub.selectedIndex].text;
-
           var pie_data = this.data[pieSelected][1]['pie_data'];
-          this.data['currentChart'] = 'pie';
+          
+          var titleText = pieSelected + ' North American Units Sold (in millions)';
+          var name = 'NA Units Sold(in millions)';          
 
-          var option = {
-            title: {
-              text: pieSelected + ' North American Units Sold (in millions)'
-            },
-            tooltip: {},
-            legend: {
-              data: 'Legend'
-            },
-            series: [{
-              name: 'NA Units Sold(in millions)',
-              type: 'pie',
-              selectedMode: 'single',
-              label: {
-                normal: {
-                    show: false,
-                    position: 'center'
-                },
-                emphasis: {
-                    show: false,
-                    textStyle: {
-                        fontSize: '30',
-                        fontWeight: 'bold'
-                    }
-                }
-              },
-              labelLine: {
-                  normal: {
-                      show: false
-                  }
-              },
-              data: pie_data
-            }]
+          var pieData = {                         
+            'titleText': titleText, 
+            'pie_data': pie_data,
+            'name': name             
           };
-          pieChart.setOption(option, true);
+
+          this.$refs.pie.buildPie(pieData);          
         },
         getData: function () {          
           axios.get(GETDATA)
