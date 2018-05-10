@@ -6,31 +6,28 @@ let scatterChart = Vue.component('scatter-chart', {
     }
   },  
   methods: {
-    buildScatter: function (chartData) {      
-      var scatterChart = echarts.init(document.getElementById('chart_div'));      
-      var scatterPub = document.getElementById("publishers");
-      var scatterSelected = chartData[0];
-      var scatter_data = chartData[1];
+    buildScatter: function (scatterData) {      
+      var scatterChart = echarts.init(document.getElementById('chart_div'));                  
       
       option = {
         title: {
-          text: chartData[2]
+          text: scatterData['titleText']
         },
         xAxis: {
-          name: chartData[3],
+          name: scatterData['xName'],
           nameLocation: 'end'
         },
         yAxis: {
-          name: chartData[4],
+          name: scatterData['yName'],
           nameLocation: 'end'
         },
         tooltip: {
           showDelay: 0,
           formatter: function (params) {
             if (params.value.length > 1) {
-              return params.value[2] + ':<br/>' + chartData[3] +': ' + params.value[0] + '<br/>' + chartData[4] +': ' + params.value[1];
+              return params.value[2] + ':<br/>' + scatterData['xName'] +': ' + params.value[0] + '<br/>' + scatterData['yName'] +': ' + params.value[1];
             } else {
-              return params.value[2] + ':<br/>' + chartData[3] +': ' + params.value[0] + '<br/>' + chartData[4] +': ' + params.value[1];
+              return params.value[2] + ':<br/>' + scatterData['xName'] +': ' + params.value[0] + '<br/>' + scatterData['yName'] +': ' + params.value[1];
             }
           },
           axisPointer: {
@@ -44,7 +41,7 @@ let scatterChart = Vue.component('scatter-chart', {
         },
         series: [{
           symbolSize: 15,
-          data: scatter_data,
+          data: scatterData['scatter_data'],
           type: 'scatter',
           color: '#0055FF'
         }]
