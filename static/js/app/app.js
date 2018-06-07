@@ -1,3 +1,4 @@
+
 var chart_vue = new Vue({      
       el: '#main',
       data: {
